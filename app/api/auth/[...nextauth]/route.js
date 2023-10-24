@@ -31,6 +31,11 @@ const refreshAccessToken = async (token) => {
 
 const authOptions = {
   providers: [
+    GoogleProvider({
+      clientId: process.env.SPOTIFY_CLIENT_ID,
+      clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+      authorization: LOGIN_URL,
+    }),
     SpotifyProvider({
       clientId: process.env.SPOTIFY_CLIENT_ID,
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
