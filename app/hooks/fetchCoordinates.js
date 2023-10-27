@@ -61,8 +61,18 @@ const fetchCoordinates = async (city) => {
   try {
     const res = await axios(apiUrl, { params: { query: city, key: apiKey } });
     // console.log(res.data.results[0]);
-    console.log(res.data.results[0].geometry.viewport);
-    const boundingBox = res.data.results[0].viewport;
+    // console.log(res.data.results[0].geometry.viewport);
+    console.log(res.data.results[0].geometry.viewport.northeast.lat);
+    const boundingBox = await {
+      NORTHEAST_LAT: res.data.results[0].geometry.viewport.northeast.lat,
+      NORTHEAST_LNG: res.data.results[0].geometry.viewport.northeast.lng,
+      SOUTHWEST_LAT: res.data.results[0].geometry.viewport.southwest.lat,
+      SOUTHWEST_LNG: res.data.results[0].geometry.viewport.southwest.lat,
+    };
+    // {
+    //   NORTHEAST_LAT, NORTHEAST_LNG, SOUTHWEST_LAT, SOUTHWEST_LNG;
+    // }
+    console.log(boundingBox);
     return boundingBox;
   } catch (error) {
     // Handle any errors

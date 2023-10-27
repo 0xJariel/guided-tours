@@ -10,8 +10,8 @@ export default function Home() {
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
         Hi World!
         {/* {fetchCoordinates()} */}
-        {aspenCoordinateList}
-        {fetchCoordinates("aspen")}
+        {/* {aspenCoordinateList} */}
+        {JSON.Stringify(fetchCoordinates("aspen"))}
       </div>
     </main>
   );

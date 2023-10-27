@@ -1,3 +1,4 @@
+import { fetchBusiness } from "./fetchBusinesses";
 import fetchCoordinates from "./fetchCoordinates";
 
 const NORTHEAST_LAT = 39.219785; // paste in the value for results[0].geometry.viewport.northeast.lat;
@@ -11,10 +12,10 @@ const aspenBoundingBox = {
   SOUTHWEST_LAT,
   SOUTHWEST_LNG,
 };
-const getCoordinates = (boundingBox) => {
+const getCoordinateList = (boundingBox, gridSize = 3) => {
   const { NORTHEAST_LAT, NORTHEAST_LNG, SOUTHWEST_LAT, SOUTHWEST_LNG } =
     boundingBox;
-  const DESIRED_GRID_LENGTH = 3;
+  const DESIRED_GRID_LENGTH = gridSize;
   let output = "";
   let intermediate_grid_length = DESIRED_GRID_LENGTH - 1;
 
@@ -38,12 +39,6 @@ const getCoordinates = (boundingBox) => {
   return coordinatePairs;
 };
 
-export const aspenCoordinateList = getCoordinates(aspenBoundingBox);
+export const aspenCoordinateList = getCoordinateList(aspenBoundingBox, 2);
 
-const getBusinesses = async (city, gridLength, businessType) => {
-  const boundingBox = fetchCoordinates(city);
-  // create coordinate pairs based on grid lentgh
-  const searchGrid = getCoordinates(boundingBox);
-};
-
-export default getCoordinates;
+export default getCoordinateList;
