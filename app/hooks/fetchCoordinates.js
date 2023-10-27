@@ -3,7 +3,7 @@ import axios from "axios";
 // Define the API endpoint and parameters
 const apiUrl = "https://maps.googleapis.com/maps/api/place/textsearch/json";
 
-const query = "new york city";
+const query = "aspen colorado";
 const radius = "address_components";
 const location = "";
 const apiKey = process.env.GOOGLE_API_KEY;
@@ -49,7 +49,7 @@ const touristAttractions = [
 
 // Create an object with the query parameters
 const params = {
-  query,
+  // query,
   // radius,
   // location,
   key: apiKey,
@@ -57,11 +57,13 @@ const params = {
 };
 
 // Send the GET request
-const fetchCoordinates = async () => {
+const fetchCoordinates = async (city) => {
   try {
-    console.log(apiKey);
-    const res = await axios(apiUrl, { params });
-    console.log(res.data.results[0].geometry);
+    const res = await axios(apiUrl, { params: { query: city, key: apiKey } });
+    // console.log(res.data.results[0]);
+    console.log(res.data.results[0].geometry.viewport);
+    const boundingBox = res.data.results[0].viewport;
+    return boundingBox;
   } catch (error) {
     // Handle any errors
     console.error("Error:", error);

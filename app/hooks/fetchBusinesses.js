@@ -4,7 +4,7 @@ import axios from "axios";
 const apiUrl = "https://maps.googleapis.com/maps/api/place/textsearch/json";
 
 const radius = "";
-const location = "40.9175771 -74.0059728";
+// const location = "40.9175771 -74.0059728";
 const apiKey = process.env.GOOGLE_API_KEY;
 
 const types = ["tourist_attraction", "travel_agency", "amusement_park"];
@@ -57,10 +57,18 @@ const params = {
 };
 
 // Send the GET request
-const fetchBusinesses = async () => {
+export const fetchBusiness = async (coordinatePair, query, type) => {
+  const location = coordinatePair ? coordinatePair : ["39.219"];
+
   try {
     console.log(apiKey);
-    const res = await axios(apiUrl, { params });
+    const res = await axios(apiUrl, {
+      params: {
+        query: query,
+        key: process.env.GOOGLE_API_KEY,
+        location: `${coordinatePair[0]} ${coordinatePair[1]}`,
+      },
+    });
     console.log(res.data);
   } catch (error) {
     // Handle any errors
@@ -68,4 +76,3 @@ const fetchBusinesses = async () => {
   }
 };
 
-export default fetchBusinesses;
