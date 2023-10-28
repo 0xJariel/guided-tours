@@ -1,4 +1,4 @@
-import { fetchBusiness } from "./fetchBusinesses";
+import { fetchBusiness } from "./fetchBusiness";
 import fetchCoordinates from "./fetchCoordinates";
 
 const NORTHEAST_LAT = 39.219785; // paste in the value for results[0].geometry.viewport.northeast.lat;
@@ -39,6 +39,6 @@ const getCoordinateList = (boundingBox, gridSize = 3) => {
   return coordinatePairs;
 };
 
-export const aspenCoordinateList = getCoordinateList(aspenBoundingBox, 2);
+// export const aspenCoordinateList = getCoordinateList(aspenBoundingBox, 2);
 
 export default getCoordinateList;
