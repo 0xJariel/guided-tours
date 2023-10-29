@@ -1,5 +1,5 @@
 const demoPair = [39.219785, -106.80139];
-import fetchBusiness from "./fetchBusiness";
+import fetchBusinessList from "./fetchBusinessList";
 import fetchCoordinates from "./fetchCoordinates";
 import getCoordinateList from "./getCoordinateList";
 // types i want to search, can only have one per search
@@ -41,15 +41,27 @@ const type = types[0];
 
 const query = touristAttractions[0];
 
-const getAllBusinesses = async (city, gridLength, query, businessType) => {
+// add next two pages to return
+const getAllBusinesses = async (
+  city,
+  gridLength,
+  keyword,
+  businessType = null
+) => {
   const boundingBox = await fetchCoordinates(city);
-  // console.log(boundingBox);
-  // create coordinate pairs based on grid lentgh
-  // const searchGrid = await getCoordinateList(boundingBox, gridLength);
-  // console.log(searchGrid);
-  // searchGrid.forEach((coordinatePair) => {
-  //   fetchBusiness(coordinatePair, query, businessType);
-  // });
+  console.log("bounding box: ", boundingBox);
+
+  const searchGrid = await getCoordinateList(boundingBox, gridLength);
+  console.log("search grid: ", searchGrid);
+
+  const businessList = [];
+  searchGrid.forEach((coordinatePair) => {
+    businessList.push(fetchBusinessList(coordinatePair, keyword, businessType));
+  });
+  // console.log(businessList[0]);
 };
+
+export const aspenCoordinateList = getAllBusinesses("aspen", 3, "Snowmobiling");
+
 
 export default getAllBusinesses;

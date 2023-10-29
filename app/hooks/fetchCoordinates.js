@@ -15,9 +15,8 @@ const fetchCoordinates = async (city) => {
       NORTHEAST_LAT: res.data.results[0].geometry.viewport.northeast.lat,
       NORTHEAST_LNG: res.data.results[0].geometry.viewport.northeast.lng,
       SOUTHWEST_LAT: res.data.results[0].geometry.viewport.southwest.lat,
-      SOUTHWEST_LNG: res.data.results[0].geometry.viewport.southwest.lat,
+      SOUTHWEST_LNG: res.data.results[0].geometry.viewport.southwest.lng,
     };
-    console.log(boundingBox);
     return boundingBox;
   } catch (error) {
     // Handle any errors

@@ -1,4 +1,4 @@
-import { fetchBusiness } from "./fetchBusiness";
+import { fetchBusiness } from "./fetchBusinessList";
 import fetchCoordinates from "./fetchCoordinates";
 
 const NORTHEAST_LAT = 39.219785; // paste in the value for results[0].geometry.viewport.northeast.lat;
@@ -12,17 +12,13 @@ const aspenBoundingBox = {
   SOUTHWEST_LAT,
   SOUTHWEST_LNG,
 };
-const getCoordinateList = (boundingBox, gridSize = 3) => {
+const getCoordinateList = (boundingBox, DESIRED_GRID_LENGTH = 3) => {
+  if (DESIRED_GRID_LENGTH < 1) return;
   const { NORTHEAST_LAT, NORTHEAST_LNG, SOUTHWEST_LAT, SOUTHWEST_LNG } =
     boundingBox;
-  const DESIRED_GRID_LENGTH = gridSize;
-  let output = "";
-  let intermediate_grid_length = DESIRED_GRID_LENGTH - 1;
 
-  let lat_step_size =
-    (NORTHEAST_LAT - SOUTHWEST_LAT) / intermediate_grid_length;
-  let lng_step_size =
-    (NORTHEAST_LNG - SOUTHWEST_LNG) / intermediate_grid_length;
+  let lat_step_size = (NORTHEAST_LAT - SOUTHWEST_LAT) / DESIRED_GRID_LENGTH;
+  let lng_step_size = (NORTHEAST_LNG - SOUTHWEST_LNG) / DESIRED_GRID_LENGTH;
 
   let coordinatePairs = [];
 
@@ -33,8 +29,6 @@ const getCoordinateList = (boundingBox, gridSize = 3) => {
       coordinatePairs.push([newLat, newLng]);
     }
   }
-
-  console.log(coordinatePairs);
 
   return coordinatePairs;
 };

@@ -8,18 +8,16 @@ const radius = "";
 const apiKey = process.env.GOOGLE_API_KEY;
 
 const types = ["tourist_attraction", "travel_agency", "amusement_park"];
-const type = types[0];
 // You can access the list elements using array indexing, e.g., touristAttractions[0] for Snowmobiling.
 
 // Send the GET request
-const fetchBusiness = async (
+const fetchBusinessList = async (
   coordinatePair,
   keyword = "Snowmobiling",
   type = null
 ) => {
   // loop 3 times with nextpage key to get the 60 available businesses
   try {
-    console.log(apiKey);
     const res = await axios(apiUrl, {
       params: {
         keyword,
@@ -31,15 +29,15 @@ const fetchBusiness = async (
         },
       },
     });
-    console.log(res.data.results.length);
-    console.log(coordinatePair[0], coordinatePair[1]);
-    // console.log(res.data);
+    const businesses = res.data.results;
+    console.log(businesses);
+    return businesses;
   } catch (error) {
     // Handle any errors
     console.error("Error:", error);
   }
 };
 
-export const demoBusiness = fetchBusiness([39.1911, -106.81754], "snowboard");
+// export const demoBusiness = fetchBusiness([39.1911, -106.81754], "snowboard");
 
-export default fetchBusiness;
+export default fetchBusinessList;
