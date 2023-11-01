@@ -12,6 +12,7 @@ const aspenBoundingBox = {
   SOUTHWEST_LAT,
   SOUTHWEST_LNG,
 };
+
 const getCoordinateList = (boundingBox, DESIRED_GRID_LENGTH = 3) => {
   if (DESIRED_GRID_LENGTH < 1) return;
   const { NORTHEAST_LAT, NORTHEAST_LNG, SOUTHWEST_LAT, SOUTHWEST_LNG } =

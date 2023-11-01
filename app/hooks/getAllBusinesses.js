@@ -1,4 +1,3 @@
-const demoPair = [39.219785, -106.80139];
 import fetchBusinessList from "./fetchBusinessList";
 import fetchCoordinates from "./fetchCoordinates";
 import getCoordinateList from "./getCoordinateList";
@@ -61,7 +60,6 @@ const getAllBusinesses = async (
   // console.log(businessList[0]);
 };
 
-export const aspenCoordinateList = getAllBusinesses("aspen", 3, "Snowmobiling");
-
+// export const aspenCoordinateList = getAllBusinesses("aspen", 3, "Snowmobiling");
 
 export default getAllBusinesses;

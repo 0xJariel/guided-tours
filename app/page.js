@@ -3,6 +3,7 @@ import fetchCoordinates from "./hooks/fetchCoordinates";
 import fetchBusinesses from "./hooks/fetchBusinessList";
 import { aspenCoordinateList } from "./hooks/getCoordinateList";
 import getAllBusinesses from "./hooks/getAllBusinesses";
+import getBusinessDetails from "./hooks/fetchBusinessDetails";
 
 export default function Home() {
   return (
