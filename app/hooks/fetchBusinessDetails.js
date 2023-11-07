@@ -34,8 +34,8 @@ const getBusinessDetails = async (place_id) => {
   return;
 };
 
-export const aspenCoordinateList = getBusinessDetails(
-  "ChIJLUvJAxFzQIcR9dze10gTtqE"
-);
+// export const aspenCoordinateList = getBusinessDetails(
+//   "ChIJLUvJAxFzQIcR9dze10gTtqE"
+// );
 
 export default getBusinessDetails;
